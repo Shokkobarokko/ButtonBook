@@ -3,7 +3,8 @@ import UIKit
 class MenuViewController: UITableViewController {
     
     private let buttonsUIKit: [(title: String, vc: UIViewController.Type)] = [
-           ("Plain", PlainButtonViewController.self)
+           ("Plain", PlainButtonViewController.self),
+           ("Filled", FilledButtonViewController.self)
        ]
 
     override func viewDidLoad() {
