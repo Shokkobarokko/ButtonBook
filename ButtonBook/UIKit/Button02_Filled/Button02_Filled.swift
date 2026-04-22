@@ -3,22 +3,29 @@ import UIKit
 final class FilledButtonViewController: UIViewController {
     
     private lazy var filledButton: UIButton = {
-        let button = UIButton(type: .custom)
-        
-        button.setTitle("Заливка", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
-        
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 12
-        
-        var config = button.configuration ?? .plain()
+        var config = UIButton.Configuration.filled()
+                config.title = "Заливка"
+                config.baseBackgroundColor = .systemBlue
+                config.baseForegroundColor = .white
+                config.cornerStyle = .medium
         config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 24, bottom: 14, trailing: 24)
-        button.configuration = config
+        let button = UIButton(configuration: config)
+        button.configuration?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+            return outgoing
+        }
+        button.configurationUpdateHandler = { button in
+                    switch button.state {
+                    case .highlighted:
+                        button.configuration?.baseBackgroundColor = .systemBlue.withAlphaComponent(0.7)
+                    default:
+                        button.configuration?.baseBackgroundColor = .systemBlue
+                    }
+                }
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        return button
+                button.translatesAutoresizingMaskIntoConstraints = false
+                return button
     }()
     
     override func viewDidLoad() {
@@ -39,18 +46,6 @@ final class FilledButtonViewController: UIViewController {
     
     @objc private func buttonTapped() {
         print("🎨 Filled button tapped!")
-    }
-    
-    @objc private func buttonTouchDown() {
-        UIView.animate(withDuration: 0.1) {
-            self.filledButton.backgroundColor = .systemBlue.withAlphaComponent(0.7)
-        }
-    }
-    
-    @objc private func buttonTouchUp() {
-        UIView.animate(withDuration: 0.1) {
-            self.filledButton.backgroundColor = .systemBlue
-        }
     }
 }
 
