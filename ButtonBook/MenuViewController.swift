@@ -4,7 +4,8 @@ class MenuViewController: UITableViewController {
     
     private let buttonsUIKit: [(title: String, vc: UIViewController.Type)] = [
            ("Plain", PlainButtonViewController.self),
-           ("Filled", FilledButtonViewController.self)
+           ("Filled", FilledButtonViewController.self),
+           ("Outlined", OutlinedButtonViewController.self)
        ]
 
     override func viewDidLoad() {

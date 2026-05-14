@@ -1,22 +1,22 @@
-# Button 02 — Filled
+# Button 03 — Outlined
 
 **Уровень сложности:** ⭐☆☆☆☆  
 **Фреймворк:** UIKit  
 **iOS:** 15+
 
 ## Что делает
-Кнопка с синей заливкой, скруглёнными углами и отступами. При нажатии затемняется.
+Кнопка с прозрачным фоном и цветной рамкой. При нажатии рамка и текст становятся полупрозрачными.
 
 ## Ключевые техники
-- `UIButton.Configuration` – современный способ настройки (iOS 15+)
-- `baseBackgroundColor`, `baseForegroundColor`, `cornerStyle`, `contentInsets`
-- `configurationUpdateHandler` – реакция на состояние `.highlighted`
-- `titleTextAttributesTransformer` – изменение шрифта
+- `UIButton.Configuration.plain()` – стиль без фона
+- `config.background.strokeColor` и `strokeWidth` – настройка рамки
+- Анимация через `configurationUpdateHandler` (или через `layer` в legacy)
+
 
 ## Как запустить
-Запустить проект, в главном меню выбрать **"Filled"**.
+Запустить проект, в главном меню выбрать **"Outlined"**.
 
 ## Что изучишь
-- Использование `UIButton.Configuration` для создания кастомных кнопок
-- Анимация подсветки через обновление конфигурации
-- Правильные отступы с `contentInsets`
+- Создание кнопки с обводкой (outline) современным способом
+- Управление состоянием `highlighted` через конфигурацию
+- Принцип работы `background.strokeColor` и отличие от `layer.borderColor`
