@@ -6,7 +6,8 @@ class MenuViewController: UITableViewController {
            ("Plain", PlainButtonViewController.self),
            ("Filled", FilledButtonViewController.self),
            ("Outlined", OutlinedButtonViewController.self),
-           ("Tented", TintedButtonViewController.self)
+           ("Tented", TintedButtonViewController.self),
+           ("Gradient", GradientButtonViewController.self)
        ]
 
     override func viewDidLoad() {
